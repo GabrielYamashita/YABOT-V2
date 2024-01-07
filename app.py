@@ -51,7 +51,7 @@ def webhook():
     resp = MessagingResponse()
 
     # Feature 1: Commands processing
-    if incoming_msg.startswith("!command"):
+    if msgBody.lower().startswith("!command"):
         command = incoming_msg.split(" ")[1]
 
         # Handle the command and generate a response
@@ -82,7 +82,7 @@ def send_reminders():
         current_day = timeNow.strftime("%A")
         current_month = timeNow.strftime("%B")
 
-        print(timeNow, current_time, current_day, current_month)
+        # print(timeNow, current_time, current_day, current_month)
 
         for reminder in data["reminders"]:
             if (
