@@ -41,7 +41,9 @@ def home():
 # Feature 1: Webhook to handle incoming messages
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
-    incoming_msg = request.values.get("Body", "").lower()
+    incoming_msg = request.form
+    
+    msgBody = incoming_msg.get('Body')
     hasMedia = int(incoming_msg.get('NumMedia'))
     contentTypeMedia = incoming_msg.get('MediaContentType0')
     urlMedia = incoming_msg.get('MediaUrl0')
@@ -60,7 +62,7 @@ def webhook():
     else:
         # Handle regular messages
         msg = resp.message()
-        msg.body(f"Body: {incoming_msg}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
+        msg.body(f"Body: {msgBody}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
 
     return str(resp)
 
@@ -120,4 +122,4 @@ if __name__ == "__main__":
     # Start Flask app
     port = os.getenv("PORT", 5000)
     app.run(debug=False, host="0.0.0.0", port=port)
-
+ 
