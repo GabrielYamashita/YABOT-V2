@@ -19,8 +19,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 
 # Credentials Import
-# account_sid = os.environ.get('ACCOUNT_SID') # account sid para o heroku
-# auth_token = os.environ.get('AUTH_TOKEN')
 load_dotenv() # carrega as variáveis de ambiente
 account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
 auth_token = os.getenv('AUTH_TOKEN')
@@ -60,7 +58,7 @@ def webhook():
         msg = resp.message()
         msg.body(f"Received: {incoming_msg}")
 
-    return str(resp)
+    return f'<h1>Resposta:</h1>{str(resp)}'
 
 
 # Feature 2: Database and scheduler

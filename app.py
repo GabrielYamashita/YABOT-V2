@@ -19,8 +19,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 
 # Credentials Import
-# account_sid = os.environ.get('ACCOUNT_SID') # account sid para o heroku
-# auth_token = os.environ.get('AUTH_TOKEN')
 load_dotenv() # carrega as variáveis de ambiente
 account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
 auth_token = os.getenv('AUTH_TOKEN')
@@ -82,11 +80,7 @@ def send_reminders():
         # print(timeNow, current_time, current_day, current_month)
 
         for reminder in data["reminders"]:
-            if (
-                reminder["time"] == current_time and 
-                reminder["day"] == current_day and 
-                reminder["month"] == current_month
-            ):
+            if reminder["time"] == current_time and reminder["day"] == current_day and reminder["month"] == current_month:
                 # Send reminder message
                 send_message(reminder["message"])
 
