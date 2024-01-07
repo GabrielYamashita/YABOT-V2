@@ -1,40 +1,34 @@
 {
     "reminders": [
         {
+            "time": "09:00",
             "day": "Sunday",
             "month": "January",
-            "time": "00:30",
-            "message": "Reminder: Teste 1"
+            "message": "Bom dia, Hora de Acordar!"
         },
         {
-            "time": "00:31",
+            "time": "10:00",
             "day": "Sunday",
             "month": "January",
-            "message": "Reminder: Teste 2"
+            "message": "Teste"
         },
         {
-            "time": "00:32",
+            "time": "12:00",
             "day": "Sunday",
             "month": "January",
-            "message": "Reminder: Teste 3"
+            "message": "Hora do Almoço!"
         },
         {
-            "time": "00:33",
+            "time": "16:00",
             "day": "Sunday",
             "month": "January",
-            "message": "Reminder: Teste 4"
+            "message": "Teste da Tarde"
         },
         {
-            "time": "00:34",
-            "day": "Saturday",
-            "month": "January",
-            "message": "Reminder: Teste 5"
-        },
-        {
-            "time": "00:35",
+            "time": "23:50",
             "day": "Sunday",
             "month": "January",
-            "message": "Reminder: Teste Final"
+            "message": "Boa Noite!"
         }
     ]
 }
