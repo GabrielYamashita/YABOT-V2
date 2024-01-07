@@ -114,6 +114,7 @@ if __name__ == "__main__":
     # Scheduler
     # scheduler.init_app(app)
     # scheduler.start()
+    
 
     # Start Flask app
     app.run()
