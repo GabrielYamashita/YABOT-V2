@@ -1,121 +1,33 @@
 
-# Environment
 import os
+import requests
 from dotenv import load_dotenv
 
-# Flask Environment
-from flask import Flask, request
-from flask_apscheduler import APScheduler
-
-# Dates Checkup
-import json
-import datetime
-from pytz import timezone
-
-# Twilio Client
-from twilio.rest import Client
-from twilio.twiml.messaging_response import MessagingResponse
-
-
-
-# Credentials Import
-load_dotenv() # carrega as variáveis de ambiente
-account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
+# Replace 'your_account_sid' and 'your_auth_token' with your actual Twilio credentials
+load_dotenv()
+account_sid = os.getenv('ACCOUNT_SID')
 auth_token = os.getenv('AUTH_TOKEN')
 
-
-
-client = Client(account_sid, auth_token)
-
-app = Flask(__name__)
-scheduler = APScheduler()
+# Assuming you have the MediaUrl0 from the incoming_message dictionary
+media_url = 'https://api.twilio.com/2010-04-01/Accounts/ACc906b1cb84d639c680889d5ab72f36d1/Messages/MM4d62c5fc32c10d3ba9ae4d5d7c27c3d5/Media/ME6f6efe4beb3d816500fb02913f6ad2ea'
 
 
 
-# Home Page
-@app.route("/")
-def home():
-    return "<h1>Hello World!</h1> Welcome to YABOT!"
+# Make a GET request to the media URL with Twilio credentials
+response = requests.get(
+    media_url,
+    auth=(account_sid, auth_token)
+)
 
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Access the binary content of the media
+    media_content = response.content
+    print(media_content)
+    print("")
 
-# Feature 1: Webhook to handle incoming messages
-@app.route("/webhook", methods=["GET", "POST"])
-def webhook():
-    incoming_msg = request.values.get("Body", "").lower()
-    hasMedia = int(incoming_msg.get('NumMedia'))
-    contentTypeMedia = incoming_msg.get('MediaContentType0')
-    urlMedia = incoming_msg.get('MediaUrl0')
-
-    resp = MessagingResponse()
-
-    # Feature 1: Commands processing
-    if incoming_msg.startswith("!command"):
-        command = incoming_msg.split(" ")[1]
-
-        # Handle the command and generate a response
-        response_message = process_command(command)
-        msg = resp.message()
-        msg.body(response_message)
-            
-    else:
-        # Handle regular messages
-        msg = resp.message()
-        msg.body(f"Body: {incoming_msg}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
-
-    return str(resp)
-
-
-# Feature 2: Database and scheduler
-@scheduler.task('interval', id='send_reminders', seconds=1)
-def send_reminders():
-    with open("reminders.json", "r") as f:
-        data = json.load(f)
-
-    utc = datetime.datetime.now(datetime.timezone.utc) # setando o tempo para UTC
-    BRSP = timezone('America/Sao_Paulo') # escolhendo o fuso horário
-    timeNow = utc.astimezone(BRSP) # adicionando o fuso horário de SP
-
-    if timeNow.second == 0:
-        current_time = timeNow.strftime("%H:%M")
-        current_day = timeNow.strftime("%A")
-        current_month = timeNow.strftime("%B")
-
-        print(timeNow, current_time, current_day, current_month)
-
-        for reminder in data["reminders"]:
-            if (
-                reminder["time"] == current_time and 
-                reminder["day"] == current_day and 
-                reminder["month"] == current_month
-            ):
-                # Send reminder message
-                send_message(reminder["message"])
-
-
-def process_command(command):
-    # Implement command processing logic
-    return f"Command processed: {command}"
-
-
-def send_message(message):
-    # Implement Twilio code to send a message
-    from_whatsapp_number = 'whatsapp:+14155238886'
-    to_whatsapp_number = 'whatsapp:+5511991982436'
-
-    message = client.messages.create(
-        body=message,
-        from_=from_whatsapp_number,
-        to=to_whatsapp_number
-    )
-
-    # print("Sending message:", message)
-
-
-
-if __name__ == "__main__":
-    # Scheduler
-    scheduler.init_app(app)
-    scheduler.start()
-
-    # Start Flask app
-    app.run()
+    # Now you can do something with the media content, e.g., save it to a file
+    with open('downloaded_media.jpg', 'wb') as file:
+        file.write(media_content)
+else:
+    print(f"Failed to retrieve media. Status code: {response.status_code}")

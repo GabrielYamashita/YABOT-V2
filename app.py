@@ -1,4 +1,3 @@
-
 # Environment
 import os
 from dotenv import load_dotenv
@@ -17,19 +16,17 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 
-
 # Credentials Import
 load_dotenv() # carrega as variáveis de ambiente
 account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
 auth_token = os.getenv('AUTH_TOKEN')
 
 
-
+# Init of Classes
 client = Client(account_sid, auth_token)
 
 app = Flask(__name__)
 scheduler = APScheduler()
-
 
 
 # Home Page
@@ -38,7 +35,7 @@ def home():
     return "<h1>Hello World!</h1> Welcome to YABOT!"
 
 
-# Feature 1: Webhook to handle incoming messages
+# Endpoint to Handle the Webhook
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     incoming_msg = request.form
@@ -56,18 +53,19 @@ def webhook():
 
         # Handle the command and generate a response
         response_message = process_command(command)
+
         msg = resp.message()
         msg.body(response_message)
             
     else:
         # Handle regular messages
         msg = resp.message()
-        msg.body(f"Body: {msgBody}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
+        msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
 
     return str(resp)
 
 
-# Feature 2: Database and scheduler
+# Scheduler Check
 @scheduler.task('interval', id='send_reminders', seconds=1)
 def send_reminders():
     with open("reminders.json", "r") as f:
@@ -85,11 +83,7 @@ def send_reminders():
         # print(timeNow, current_time, current_day, current_month)
 
         for reminder in data["reminders"]:
-            if (
-                reminder["time"] == current_time and 
-                reminder["day"] == current_day and 
-                reminder["month"] == current_month
-            ):
+            if reminder["time"] == current_time and reminder["day"] == current_day and reminder["month"] == current_month:
                 # Send reminder message
                 send_message(reminder["message"])
 
@@ -97,6 +91,10 @@ def send_reminders():
 def process_command(command):
     # Implement command processing logic
     return f"Command processed: {command}"
+
+
+def resp_message():
+    pass
 
 
 def send_message(message):
@@ -110,10 +108,8 @@ def send_message(message):
         to=to_whatsapp_number
     )
 
-    # print("Sending message:", message)
 
-
-
+# Running the App
 if __name__ == "__main__":
     # Scheduler
     scheduler.init_app(app)
@@ -122,4 +118,3 @@ if __name__ == "__main__":
     # Start Flask app
     port = os.getenv("PORT", 5000)
     app.run(debug=False, host="0.0.0.0", port=port)
- 
