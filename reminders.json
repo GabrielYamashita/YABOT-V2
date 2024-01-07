@@ -1,0 +1,40 @@
+{
+    "reminders": [
+        {
+            "day": "Saturday",
+            "month": "January",
+            "time": "20:30",
+            "message": "Reminder: Teste 1"
+        },
+        {
+            "time": "20:31",
+            "day": "Saturday",
+            "month": "January",
+            "message": "Reminder: Teste 2"
+        },
+        {
+            "time": "20:32",
+            "day": "Sunday",
+            "month": "January",
+            "message": "Reminder: Teste 3"
+        },
+        {
+            "time": "20:33",
+            "day": "Sunday",
+            "month": "January",
+            "message": "Reminder: Teste 4"
+        },
+        {
+            "time": "20:34",
+            "day": "Saturday",
+            "month": "January",
+            "message": "Reminder: Teste 5"
+        },
+        {
+            "time": "20:35",
+            "day": "Saturday",
+            "month": "January",
+            "message": "Reminder: Teste Final"
+        }
+    ]
+}
