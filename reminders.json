@@ -3,35 +3,35 @@
         {
             "day": "Saturday",
             "month": "January",
-            "time": "20:30",
+            "time": "23:24",
             "message": "Reminder: Teste 1"
         },
         {
-            "time": "20:31",
+            "time": "23:25",
             "day": "Saturday",
             "month": "January",
             "message": "Reminder: Teste 2"
         },
         {
-            "time": "20:32",
+            "time": "23:26",
             "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste 3"
         },
         {
-            "time": "20:33",
+            "time": "23:27",
             "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste 4"
         },
         {
-            "time": "20:34",
+            "time": "23:28",
             "day": "Saturday",
             "month": "January",
             "message": "Reminder: Teste 5"
         },
         {
-            "time": "20:35",
+            "time": "23:35",
             "day": "Saturday",
             "month": "January",
             "message": "Reminder: Teste Final"
