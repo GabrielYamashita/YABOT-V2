@@ -52,11 +52,13 @@ def webhook():
 
         # Handle the command and generate a response
         response_message = process_command(command)
-        resp.message(response_message)
+        msg = resp.message()
+        msg.body(response_message)
             
     else:
         # Handle regular messages
-        resp.message(f"Received: {incoming_msg}")
+        msg = resp.message()
+        msg.body(f"Received: {incoming_msg}")
 
     return str(resp)
 
