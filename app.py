@@ -118,4 +118,6 @@ if __name__ == "__main__":
     scheduler.start()
 
     # Start Flask app
-    app.run()
+    port = os.getenv("PORT", 5000)
+    app.run(debug=False, host="0.0.0.0", port=port)
+
