@@ -1,38 +1,38 @@
 {
     "reminders": [
         {
-            "day": "Saturday",
+            "day": "Sunday",
             "month": "January",
-            "time": "00:20",
+            "time": "00:30",
             "message": "Reminder: Teste 1"
         },
         {
-            "time": "00:21",
-            "day": "Saturday",
+            "time": "00:31",
+            "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste 2"
         },
         {
-            "time": "00:22",
+            "time": "00:32",
             "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste 3"
         },
         {
-            "time": "00:23",
+            "time": "00:33",
             "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste 4"
         },
         {
-            "time": "00:24",
+            "time": "00:34",
             "day": "Saturday",
             "month": "January",
             "message": "Reminder: Teste 5"
         },
         {
-            "time": "00:25",
-            "day": "Saturday",
+            "time": "00:35",
+            "day": "Sunday",
             "month": "January",
             "message": "Reminder: Teste Final"
         }
