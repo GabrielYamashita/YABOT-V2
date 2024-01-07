@@ -51,7 +51,8 @@ def webhook():
         command = incoming_msg.split(" ")[1]
 
         # Handle the command and generate a response
-        response_message = process_command(command)
+        # response_message = process_command(command)
+        response_message = f'COMANDO {command}'
         msg = resp.message()
         msg.body(response_message)
             
@@ -63,50 +64,50 @@ def webhook():
     return str(resp)
 
 
-# Feature 2: Database and scheduler
-@scheduler.task('interval', id='send_reminders', seconds=1)
-def send_reminders():
-    with open("reminders.json", "r") as f:
-        data = json.load(f)
+# # Feature 2: Database and scheduler
+# @scheduler.task('interval', id='send_reminders', seconds=1)
+# def send_reminders():
+#     with open("reminders.json", "r") as f:
+#         data = json.load(f)
 
-    utc = datetime.datetime.now(datetime.timezone.utc) # setando o tempo para UTC
-    BRSP = timezone('America/Sao_Paulo') # escolhendo o fuso horário
-    timeNow = utc.astimezone(BRSP) # adicionando o fuso horário de SP
+#     utc = datetime.datetime.now(datetime.timezone.utc) # setando o tempo para UTC
+#     BRSP = timezone('America/Sao_Paulo') # escolhendo o fuso horário
+#     timeNow = utc.astimezone(BRSP) # adicionando o fuso horário de SP
 
-    if timeNow.second == 0:
-        current_time = timeNow.strftime("%H:%M")
-        current_day = timeNow.strftime("%A")
-        current_month = timeNow.strftime("%B")
+#     if timeNow.second == 0:
+#         current_time = timeNow.strftime("%H:%M")
+#         current_day = timeNow.strftime("%A")
+#         current_month = timeNow.strftime("%B")
 
-        print(timeNow, current_time, current_day, current_month)
+#         print(timeNow, current_time, current_day, current_month)
 
-        for reminder in data["reminders"]:
-            if (
-                reminder["time"] == current_time and 
-                reminder["day"] == current_day and 
-                reminder["month"] == current_month
-            ):
-                # Send reminder message
-                send_message(reminder["message"])
-
-
-def process_command(command):
-    # Implement command processing logic
-    return f"Command processed: {command}"
+#         for reminder in data["reminders"]:
+#             if (
+#                 reminder["time"] == current_time and 
+#                 reminder["day"] == current_day and 
+#                 reminder["month"] == current_month
+#             ):
+#                 # Send reminder message
+#                 send_message(reminder["message"])
 
 
-def send_message(message):
-    # Implement Twilio code to send a message
-    from_whatsapp_number = 'whatsapp:+14155238886'
-    to_whatsapp_number = 'whatsapp:+5511991982436'
+# def process_command(command):
+#     # Implement command processing logic
+#     return f"Command processed: {command}"
 
-    message = client.messages.create(
-        body=message,
-        from_=from_whatsapp_number,
-        to=to_whatsapp_number
-    )
 
-    # print("Sending message:", message)
+# def send_message(message):
+#     # Implement Twilio code to send a message
+#     from_whatsapp_number = 'whatsapp:+14155238886'
+#     to_whatsapp_number = 'whatsapp:+5511991982436'
+
+#     message = client.messages.create(
+#         body=message,
+#         from_=from_whatsapp_number,
+#         to=to_whatsapp_number
+#     )
+
+#     # print("Sending message:", message)
 
 
 
@@ -114,7 +115,7 @@ if __name__ == "__main__":
     # Scheduler
     # scheduler.init_app(app)
     # scheduler.start()
-    
+
 
     # Start Flask app
-    app.run()
+    app.run(debug=False)
