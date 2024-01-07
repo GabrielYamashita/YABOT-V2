@@ -118,4 +118,5 @@ if __name__ == "__main__":
 
 
     # Start Flask app
-    app.run(debug=False)
+    port = os.getenv("PORT", 5000)
+    app.run(debug=False, host="0.0.0.0", port=port)
