@@ -34,8 +34,14 @@ scheduler = APScheduler()
 
 
 
+# Home Page
+@app.route("/")
+def home():
+    return "<h1>Hello World!</h1> Welcome to YABOT!"
+
+
 # Feature 1: Webhook to handle incoming messages
-@app.route("/webhook", methods=["POST"])
+@app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     incoming_msg = request.values.get("Body", "").lower()
     resp = MessagingResponse()
@@ -46,11 +52,13 @@ def webhook():
 
         # Handle the command and generate a response
         response_message = process_command(command)
-        resp.message(response_message)
+        msg = resp.message()
+        msg.body(response_message)
             
     else:
         # Handle regular messages
-        resp.message(f"Received: {incoming_msg}")
+        msg = resp.message()
+        msg.body(f"Received: {incoming_msg}")
 
     return str(resp)
 
@@ -108,4 +116,4 @@ if __name__ == "__main__":
     scheduler.start()
 
     # Start Flask app
-    app.run(debug=True, use_reloader=False)
+    app.run()
