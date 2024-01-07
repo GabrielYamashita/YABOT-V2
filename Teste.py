@@ -42,6 +42,10 @@ def home():
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     incoming_msg = request.values.get("Body", "").lower()
+    hasMedia = int(incoming_msg.get('NumMedia'))
+    contentTypeMedia = incoming_msg.get('MediaContentType0')
+    urlMedia = incoming_msg.get('MediaUrl0')
+
     resp = MessagingResponse()
 
     # Feature 1: Commands processing
@@ -56,9 +60,9 @@ def webhook():
     else:
         # Handle regular messages
         msg = resp.message()
-        msg.body(f"Received: {incoming_msg}")
+        msg.body(f"Body: {incoming_msg}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
 
-    return f'<h1>Resposta:</h1>{str(resp)}'
+    return str(resp)
 
 
 # Feature 2: Database and scheduler
