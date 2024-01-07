@@ -42,6 +42,10 @@ def home():
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     incoming_msg = request.values.get("Body", "").lower()
+    hasMedia = int(incoming_msg.get('NumMedia'))
+    contentTypeMedia = incoming_msg.get('MediaContentType0')
+    urlMedia = incoming_msg.get('MediaUrl0')
+
     resp = MessagingResponse()
 
     # Feature 1: Commands processing
@@ -49,15 +53,14 @@ def webhook():
         command = incoming_msg.split(" ")[1]
 
         # Handle the command and generate a response
-        # response_message = process_command(command)
-        response_message = f'COMANDO {command}'
+        response_message = process_command(command)
         msg = resp.message()
         msg.body(response_message)
             
     else:
         # Handle regular messages
         msg = resp.message()
-        msg.body(f"Received: {incoming_msg}")
+        msg.body(f"Body: {incoming_msg}\nNumMedia:{hasMedia}\nMedia Content Type:{contentTypeMedia}\nMedia URL: {urlMedia}")
 
     return str(resp)
 
@@ -77,10 +80,14 @@ def send_reminders():
         current_day = timeNow.strftime("%A")
         current_month = timeNow.strftime("%B")
 
-        # print(timeNow, current_time, current_day, current_month)
+        print(timeNow, current_time, current_day, current_month)
 
         for reminder in data["reminders"]:
-            if reminder["time"] == current_time and reminder["day"] == current_day and reminder["month"] == current_month:
+            if (
+                reminder["time"] == current_time and 
+                reminder["day"] == current_day and 
+                reminder["month"] == current_month
+            ):
                 # Send reminder message
                 send_message(reminder["message"])
 
@@ -110,7 +117,5 @@ if __name__ == "__main__":
     scheduler.init_app(app)
     scheduler.start()
 
-
     # Start Flask app
-    port = os.getenv("PORT", 5000)
-    app.run(debug=False, host="0.0.0.0", port=port)
+    app.run()
