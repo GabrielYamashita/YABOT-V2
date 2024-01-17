@@ -1,34 +1,52 @@
 {
     "reminders": [
         {
-            "time": "09:00",
-            "day": "Sunday",
-            "month": "January",
-            "message": "Bom dia, Hora de Acordar!"
+            "reminderType": "W",
+            "reminder": [0,3],
+            "time": "04:35",
+            "message": "Teste Certo 1"
         },
         {
-            "time": "10:00",
-            "day": "Sunday",
-            "month": "January",
-            "message": "Teste"
+            "reminderType": "M",
+            "reminder": [17, 20],
+            "time": "04:36",
+            "message": "Teste Certo 2" 
         },
         {
-            "time": "12:00",
-            "day": "Sunday",
-            "month": "January",
-            "message": "Hora do Almoço!"
+            "reminderType": "W",
+            "reminder": [4],
+            "time": "04:37",
+            "message": "Teste Certo 3" 
         },
         {
-            "time": "16:00",
-            "day": "Sunday",
-            "month": "January",
-            "message": "Teste da Tarde"
+            "reminderType": "W",
+            "reminder": [3],
+            "time": "04:38",
+            "message": "Teste Errado 1" 
         },
         {
-            "time": "23:50",
-            "day": "Sunday",
-            "month": "January",
-            "message": "Boa Noite!"
+            "reminderType": "M",
+            "reminder": [18,19,20],
+            "time": "04:39",
+            "message": "Teste Errado 2" 
+        },
+        {
+            "reminderType": "M",
+            "reminder": [17,20],
+            "time": "04:40",
+            "message": "Teste Certo 4" 
+        },
+        {
+            "reminderType": "W",
+            "reminder": [1],
+            "time": "04:41",
+            "message": "Teste Errado 3" 
+        },
+        {
+            "reminderType": "W",
+            "reminder": [0],
+            "time": "04:42",
+            "message": "Teste Certo 5" 
         }
     ]
 }

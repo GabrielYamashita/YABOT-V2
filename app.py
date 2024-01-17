@@ -74,24 +74,38 @@ def webhook():
 # Scheduler Check
 @scheduler.task('interval', id='send_reminders', seconds=1)
 def send_reminders():
-    with open("reminders.json", "r") as f:
-        data = json.load(f)
-
     utc = datetime.datetime.now(datetime.timezone.utc) # setando o tempo para UTC
     BRSP = timezone('America/Sao_Paulo') # escolhendo o fuso horário
     timeNow = utc.astimezone(BRSP) # adicionando o fuso horário de SP
 
     if timeNow.second == 0:
-        current_time = timeNow.strftime("%H:%M")
-        current_day = timeNow.strftime("%A")
-        current_month = timeNow.strftime("%B")
+        current_time = timeNow.strftime("%H:%M") # current time
+        # current_day = timeNow.strftime("%A") # day in week (written)
+        weekDay = int(timeNow.strftime('%w')) + 1 # day in week (number)
+        monthDay = timeNow.day # day in month
 
-        # print(timeNow, current_time, current_day, current_month)
+        # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
+        
+        with open("reminders.json", "r") as f:
+            data = json.load(f)
 
         for reminder in data["reminders"]:
-            if reminder["time"] == current_time and reminder["day"] == current_day and reminder["month"] == current_month:
-                # Send reminder message
-                send_message(reminder["message"])
+            if reminder["time"] == current_time:
+                # Check for Weekly Reminders
+                if (
+                    (reminder["reminderType"] == "W" and weekDay in reminder["reminder"]) or
+                    (0 in reminder["reminder"])
+                ):
+                    # print(reminder["message"])
+                    send_message(reminder["message"])
+
+                # Check for Monthly Reminders
+                if (
+                    (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or
+                    (True)
+                ):
+                    # print(reminder["message"])
+                    send_message(reminder["message"])
 
 
 def process_command(command):
