@@ -3,49 +3,49 @@
         {
             "reminderType": "W",
             "reminder": [0,3],
-            "time": "04:35",
+            "time": "04:45",
             "message": "Teste Certo 1"
         },
         {
             "reminderType": "M",
             "reminder": [17, 20],
-            "time": "04:36",
+            "time": "04:46",
             "message": "Teste Certo 2" 
         },
         {
             "reminderType": "W",
             "reminder": [4],
-            "time": "04:37",
+            "time": "04:47",
             "message": "Teste Certo 3" 
         },
         {
             "reminderType": "W",
             "reminder": [3],
-            "time": "04:38",
+            "time": "04:48",
             "message": "Teste Errado 1" 
         },
         {
             "reminderType": "M",
             "reminder": [18,19,20],
-            "time": "04:39",
+            "time": "04:49",
             "message": "Teste Errado 2" 
         },
         {
             "reminderType": "M",
             "reminder": [17,20],
-            "time": "04:40",
+            "time": "04:50",
             "message": "Teste Certo 4" 
         },
         {
             "reminderType": "W",
             "reminder": [1],
-            "time": "04:41",
+            "time": "04:51",
             "message": "Teste Errado 3" 
         },
         {
             "reminderType": "W",
             "reminder": [0],
-            "time": "04:42",
+            "time": "04:52",
             "message": "Teste Certo 5" 
         }
     ]

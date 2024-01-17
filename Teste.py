@@ -76,8 +76,25 @@
 #                     print(reminder["message"])
 
 
+import os
+from dotenv import load_dotenv
+from twilio.rest import Client
 
+load_dotenv() # carrega as variáveis de ambiente
+account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
+auth_token = os.getenv('AUTH_TOKEN')
 
+client = Client(account_sid, auth_token)
 
+def send_message(message):
+    # Implement Twilio code to send a message
+    from_whatsapp_number = 'whatsapp:+14155238886'
+    to_whatsapp_number = 'whatsapp:+5511991982436'
 
-                # print(reminder["message"])
+    message = client.messages.create(
+        body=message,
+        from_=from_whatsapp_number,
+        to=to_whatsapp_number
+    )
+
+send_message("Teste")
