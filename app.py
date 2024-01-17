@@ -51,6 +51,7 @@ def webhook():
     urlMedia = incoming_msg.get('MediaUrl0')
 
     resp = MessagingResponse()
+    msg = resp.message()
 
     # Feature 1: Commands processing
     if msgBody.lower().startswith("!command"):
@@ -58,13 +59,10 @@ def webhook():
 
         # Handle the command and generate a response
         response_message = process_command(command)
-
-        msg = resp.message()
         msg.body(response_message)
             
     # else:
     #     # Handle regular messages
-    #     msg = resp.message()
     #     msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
     #     msg.media(GOOD_BOY_URL)
 
