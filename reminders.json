@@ -63,14 +63,14 @@
         {
             "reminderType": "W",
             "reminder": [4],
-            "time": "05:23",
-            "message": "Teste Simultaneo Week"
+            "time": "05:26",
+            "message": "Teste Simultaneo Week 1"
         },
         {
-            "reminderType": "M",
-            "reminder": [17],
-            "time": "05:23",
-            "message": "Teste Simultaneo Month"
+            "reminderType": "W",
+            "reminder": [4],
+            "time": "05:26",
+            "message": "Teste Simultaneo Week 2"
         }
     ]
 }
