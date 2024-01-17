@@ -86,7 +86,7 @@ def send_reminders():
 
         # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
         
-        with open("reminders.json", "r") as f:
+        with open("reminders.json", "r", encoding="utf-8") as f:
             data = json.load(f)
 
         for reminder in data["reminders"]:
@@ -96,7 +96,6 @@ def send_reminders():
                     (reminder["reminderType"] == "W" and weekDay in reminder["reminder"]) or
                     (0 in reminder["reminder"])
                 ):
-                    # print(reminder["message"])
                     send_message(reminder["message"])
 
                 # Check for Monthly Reminders
@@ -104,7 +103,6 @@ def send_reminders():
                     (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or
                     (False)
                 ):
-                    # print(reminder["message"])
                     send_message(reminder["message"])
 
 
@@ -118,7 +116,6 @@ def resp_message():
 
 
 def send_message(message):
-    # Implement Twilio code to send a message
     from_whatsapp_number = 'whatsapp:+14155238886'
     to_whatsapp_number = 'whatsapp:+5511991982436'
 
@@ -131,6 +128,10 @@ def send_message(message):
 
 # Running the App
 if __name__ == "__main__":
+    # Initializing
+    print("Running...")
+    send_message("New Deploy has been Launched")
+
     # Scheduler
     scheduler.init_app(app)
     scheduler.start()
