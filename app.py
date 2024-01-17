@@ -41,7 +41,7 @@ def home():
 
 
 # Endpoint to Handle the Webhook
-@app.route("/webhook", methods=["GET", "POST"])
+@app.route("/webhook", methods=["POST"])
 def webhook():
     incoming_msg = request.form
     
