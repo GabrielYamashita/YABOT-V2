@@ -3,31 +3,31 @@
         {
             "reminderType": "W",
             "reminder": [0,3],
-            "time": "04:58",
+            "time": "05:06",
             "message": "Teste Certo 1"
         },
         {
             "reminderType": "M",
             "reminder": [17, 20],
-            "time": "04:59",
+            "time": "05:07",
             "message": "Teste Certo 2" 
         },
         {
             "reminderType": "W",
             "reminder": [4],
-            "time": "05:00",
+            "time": "05:08",
             "message": "Teste Certo 3" 
         },
         {
             "reminderType": "W",
             "reminder": [3],
-            "time": "05:01",
+            "time": "05:09",
             "message": "Teste Errado 1" 
         },
         {
             "reminderType": "M",
             "reminder": [18,19,20],
-            "time": "05:02",
+            "time": "05:10",
             "message": "Teste Errado 2" 
         },
         {

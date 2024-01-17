@@ -102,7 +102,7 @@ def send_reminders():
                 # Check for Monthly Reminders
                 if (
                     (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or
-                    (True)
+                    (False)
                 ):
                     # print(reminder["message"])
                     send_message(reminder["message"])
