@@ -62,11 +62,11 @@ def webhook():
         msg = resp.message()
         msg.body(response_message)
             
-    else:
-        # Handle regular messages
-        msg = resp.message()
-        msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
-        msg.media(GOOD_BOY_URL)
+    # else:
+    #     # Handle regular messages
+    #     msg = resp.message()
+    #     msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
+    #     msg.media(GOOD_BOY_URL)
 
     return str(resp)
 
