@@ -65,7 +65,7 @@ def webhook():
         # Handle regular messages
         # msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
         msg.body(f"Incoming Message:\n\n{incoming_msg}\n\n{'-'*7}\n\nBody: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
-        msg.media(GOOD_BOY_URL)
+        # msg.media(GOOD_BOY_URL)
 
     return str(resp)
 
