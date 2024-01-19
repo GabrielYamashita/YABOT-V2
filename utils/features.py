@@ -11,7 +11,7 @@ def process_type(incoming_msg):
     contentTypeMedia = incoming_msg.get('MediaContentType0')
     urlMedia = incoming_msg.get('MediaUrl0')
 
-    return f'{profileName}:\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
+    return f'User: *{profileName}*\n\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
 
 
     ''' 
