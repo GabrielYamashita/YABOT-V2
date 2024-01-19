@@ -15,6 +15,8 @@ from pytz import timezone
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
+# Funções Importantes
+from utils import features
 
 # Credentials Import
 load_dotenv() # carrega as variáveis de ambiente
@@ -44,6 +46,7 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     incoming_msg = request.form
+    features.process_type(incoming_msg)
     
     msgBody = incoming_msg.get('Body')
     hasMedia = int(incoming_msg.get('NumMedia'))
@@ -63,8 +66,8 @@ def webhook():
             
     else:
         # Handle regular messages
-        # msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
-        msg.body(f"Incoming Message:\n\n{incoming_msg}\n\n{'-'*7}\n\nBody: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
+        # msg.body(f"Incoming Message:\n\n{incoming_msg}\n\n{'-'*7}\n\nBody: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
+        msg.body(features.process_type(incoming_msg))
         # msg.media(GOOD_BOY_URL)
 
     return str(resp)
