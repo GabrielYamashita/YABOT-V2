@@ -55,7 +55,7 @@ def webhook():
 
     # Feature 1: Commands processing
     if msgBody.lower().startswith("!command"):
-        command = msgBody.split(" ")[1]
+        command = msgBody.split(" ")[1:].join()
 
         # Handle the command and generate a response
         response_message = process_command(command, incoming_msg)
