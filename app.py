@@ -110,7 +110,7 @@ def process_command(command, incoming_msg):
         return f'Incoming Message:\n\n{incoming_msg}'
 
 
-    return f"Command processed: {command}"
+    return f"Command processed: '{command}'"
 
 
 def resp_message():
