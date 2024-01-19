@@ -106,7 +106,7 @@ def send_reminders():
 
 def process_command(command, incoming_msg):
     # Implement command processing logic
-    if process_command == 'show log':
+    if command == 'show log':
         return f'Incoming Message:\n\n{incoming_msg}'
 
 
