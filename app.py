@@ -58,13 +58,13 @@ def webhook():
         command = msgBody.split(" ")[1]
 
         # Handle the command and generate a response
-        response_message = process_command(command)
+        response_message = process_command(command, incoming_msg)
         msg.body(response_message)
             
-    # else:
-    #     # Handle regular messages
-    #     msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
-    #     msg.media(GOOD_BOY_URL)
+    else:
+        # Handle regular messages
+        msg.body(f"Body: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
+        msg.media(GOOD_BOY_URL)
 
     return str(resp)
 
@@ -104,8 +104,12 @@ def send_reminders():
                     send_message(reminder["message"])
 
 
-def process_command(command):
+def process_command(command, incoming_msg):
     # Implement command processing logic
+    if process_command == 'show log':
+        return f'Incoming Message:\n\n{incoming_msg}'
+
+
     return f"Command processed: {command}"
 
 
