@@ -83,6 +83,8 @@ def respond(incoming_msg):
         msg.body(categorize_msg(incoming_msg))
         # msg.media(GOOD_BOY_URL)
 
+    return resp
+
 
 def process_command(command, incoming_msg):
     # Implement command processing logic

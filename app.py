@@ -51,7 +51,7 @@ def webhook():
     # resp = MessagingResponse()
     # msg = resp.message()
 
-    features.respond(incoming_msg)
+    resp = features.respond(incoming_msg)
 
     # Feature 1: Commands processing
     # if msgBody.lower().startswith("!command"):
@@ -67,7 +67,7 @@ def webhook():
     #     msg.body(features.categorize_msg(incoming_msg))
     #     # msg.media(GOOD_BOY_URL)
 
-    # return str(resp)
+    return str(resp)
 
 
 # Scheduler Check
