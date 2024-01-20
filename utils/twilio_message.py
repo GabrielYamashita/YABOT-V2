@@ -8,8 +8,8 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 # Functions
-import webhook_command
-import webhook_respond
+from webhook_command import process_command
+from webhook_respond import categorize_msg
 
 def respond(incoming_msg):
     resp = MessagingResponse()
@@ -21,12 +21,12 @@ def respond(incoming_msg):
         command = " ".join(msgBody.split(" ")[1:])
 
         # Handle the command and generate a response
-        response_message = webhook_command.process_command(command, incoming_msg)
+        response_message = process_command(command, incoming_msg)
         msg.body(response_message)
             
     else:
         # Handle regular messages
-        msg.body(webhook_respond.categorize_msg(incoming_msg))
+        msg.body(categorize_msg(incoming_msg))
         # msg.body(f"Incoming Message:\n\n{incoming_msg}\n\n{'-'*7}\n\nBody: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
         # msg.media(GOOD_BOY_URL)
 
