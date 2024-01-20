@@ -27,7 +27,7 @@ def respond(incoming_msg):
     else:
         # Handle regular messages
         msg.body(categorize_msg(incoming_msg))
-        msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<https://www.youtube.com/>')
+        msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3Chttps://www.youtube.com/%3E')
 
     return resp
 
