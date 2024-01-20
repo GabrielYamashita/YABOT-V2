@@ -10,32 +10,35 @@ def process_type(incoming_msg):
         typeContent = contentTypeMedia.split('/')
 
         if typeContent[0] == 'image' and msgBody != '':
-            return f'image and msg type'
+            return f'image and msg type | {typeContent}'
         
         elif typeContent[0] == 'image':
-            return f'image type'
+            return f'image type | {typeContent}'
+
+        elif typeContent[0] == 'video' and msgBody != '':
+            return f'video and msg type | {typeContent}'
+        
+        elif typeContent[0] == 'video':
+            return f'video type | {typeContent}'
 
         elif typeContent[0] == 'audio':
-            return f'audio type'
-
-        elif typeContent[0] == 'video':
-            return f'video type'
+            return f'audio type | {typeContent}'
 
         elif typeContent[0] == 'application':
-            return f'application type'
+            return f'application type | {typeContent}'
         
         elif typeContent[0] == 'text':
-            return f'text type'
+            return f'text type | {typeContent}'
         
     else:
         lat = incoming_msg.get('Latitude')
         long = incoming_msg.get('Longitude')
 
         if lat != None and long != None:
-            return f'location type'
+            return f'location type | {typeContent}'
         
         else:
-            return f'msg type'
+            return f'msg type | {typeContent}'
 
 
     ''' 
