@@ -21,8 +21,11 @@ def respond(incoming_msg):
         command = " ".join(msgBody.split(" ")[1:])
 
         # Handle the command and generate a response
-        response_message = process_command(command, incoming_msg)
+        response_message, imgGen = process_command(command, incoming_msg)
+        
         msg.body(response_message)
+        if imgGen != False:
+            msg.media(imgGen)
             
     else:
         # Handle regular messages

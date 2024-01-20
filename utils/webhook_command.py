@@ -10,7 +10,7 @@ def process_command(command, incoming_msg):
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3C{link}%3E'
 
     else:
-        resp = 'Command not Found!'
+        resp = 'Command not Found!y'
 
     return resp, imgGen
 
