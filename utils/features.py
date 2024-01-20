@@ -35,10 +35,10 @@ def process_type(incoming_msg):
         long = incoming_msg.get('Longitude')
 
         if lat != None and long != None:
-            return f'location type | {typeContent}'
+            return f'location type'
         
         else:
-            return f'msg type | {typeContent}'
+            return f'msg type'
 
 
     ''' 
