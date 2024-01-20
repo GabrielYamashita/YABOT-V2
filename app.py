@@ -11,17 +11,12 @@ import json
 import datetime
 from pytz import timezone
 
-# Funções Importantes
+# Webhook Handler
 from utils import twilio_message
 
-
+# Incialização do App
 app = Flask(__name__)
 scheduler = APScheduler()
-
-# GOOD_BOY_URL = (
-#     "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1"
-#     "&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-# )
 
 
 # Home Page
@@ -39,40 +34,35 @@ def webhook():
     return str(resp)
 
 
-# Scheduler Check
+# Reminder Check
 @scheduler.task('interval', id='send_reminders', seconds=1)
 def send_reminders():
-    utc = datetime.datetime.now(datetime.timezone.utc) # setando o tempo para UTC
-    BRSP = timezone('America/Sao_Paulo') # escolhendo o fuso horário
-    timeNow = utc.astimezone(BRSP) # adicionando o fuso horário de SP
+    # Puxando Horário com Fuso de SP
+    utc = datetime.datetime.now(datetime.timezone.utc)
+    BRSP = timezone('America/Sao_Paulo')
+    timeNow = utc.astimezone(BRSP)
 
     if timeNow.second == 0:
         current_time = timeNow.strftime("%H:%M") # current time
-        # current_day = timeNow.strftime("%A") # day in week (written)
         weekDay = int(timeNow.strftime('%w')) + 1 # day in week (number)
         monthDay = timeNow.day # day in month
 
         # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
         
-        with open("reminders.json", "r", encoding="utf-8") as f:
+        # Carregando Reminders
+        with open("./data/reminders.json", "r", encoding="utf-8") as f:
             data = json.load(f)
 
+        # Checando cada Reminder
         for reminder in data["reminders"]:
             if reminder["time"] == current_time:
-                # Check for Weekly Reminders
-                if (
-                    (reminder["reminderType"] == "W" and weekDay in reminder["reminder"]) or
-                    (0 in reminder["reminder"])
-                ):
+                # Checando Reminders Semanais [W]
+                if ( (reminder["reminderType"] == "W" and weekDay in reminder["reminder"]) or (0 in reminder["reminder"]) ):
                     twilio_message.send_message(reminder["message"])
 
-                # Check for Monthly Reminders
-                if (
-                    (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or
-                    (False)
-                ):
+                # Checando Reminders Mensais [M]
+                if ( (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or (False) ):
                     twilio_message.send_message(reminder["message"])
-
 
 
 # Running the App

@@ -11,39 +11,43 @@ from twilio.twiml.messaging_response import MessagingResponse
 from .webhook_command import process_command
 from .webhook_respond import categorize_msg
 
+
+# Função para Responder Mensagens
 def respond(incoming_msg):
     resp = MessagingResponse()
     msg = resp.message()
 
     msgBody = incoming_msg.get('Body')
 
+    # Lidando com Comandos
     if msgBody.lower().startswith("!command"):
+        # Selecionando texto pós chave de comando
         command = " ".join(msgBody.split(" ")[1:])
 
-        # Handle the command and generate a response
-        response_message, imgGen = process_command(command, incoming_msg)
+        # Gerando Resposta e Imagem
+        response_message, imgGen = process_command(command) 
 
+        # Gerando Mensagem para Usuário
         msg.body(response_message)
         if imgGen != False:
             msg.media(imgGen)
-            
+
+    # Lidando com Mensagens Genéricas
     else:
-        # Handle regular messages
         msg.body(categorize_msg(incoming_msg))
         # msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3Chttps://www.youtube.com/%3E')
 
     return resp
 
 
+# Função para Mandar uma Mensagem
 def send_message(message):
     load_dotenv() # carrega as variáveis de ambiente
-    account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
-    auth_token = os.getenv('AUTH_TOKEN')
+    account_sid = os.getenv('ACCOUNT_SID') # account sid twilio
+    auth_token = os.getenv('AUTH_TOKEN')   # auth token twilio
 
-    client = Client(account_sid, auth_token)
+    client = Client(account_sid, auth_token) # inicializando cliente
 
-
-    # Implement Twilio code to send a message
     from_whatsapp_number = 'whatsapp:+14155238886'
     to_whatsapp_number = 'whatsapp:+5511991982436'
 
@@ -52,50 +56,3 @@ def send_message(message):
         from_=from_whatsapp_number,
         to=to_whatsapp_number
     )
-
-    # print("Sending message:", message)
-
-# respond(
-#     [
-#         ('SmsMessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-#         ('NumMedia', '0'),
-#         ('ProfileName', 'Gabriel Yamashita'),
-#         ('SmsSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-#         ('WaId', '5511991982436'),
-#         ('SmsStatus', 'received'),
-#         ('Body', '!command show log'),
-#         ('To', 'whatsapp:+14155238886'),
-#         ('NumSegments', '1'),
-#         ('ReferralNumMedia', '0'),
-#         ('MessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-#         ('AccountSid', 'ACc906b1cb84d639c680889d5ab72f36d1'),
-#         ('From', 'whatsapp:+5511991982436'),
-#         ('ApiVersion', '2010-04-01')
-#     ]
-# )
-
-from werkzeug.datastructures import ImmutableMultiDict
-
-# Creating an empty ImmutableMultiDict
-# immutable_multi_dict = ImmutableMultiDict()
-
-# Creating an ImmutableMultiDict with some initial data
-data = [
-    ('SmsMessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-    ('NumMedia', '0'),
-    ('ProfileName', 'Gabriel Yamashita'),
-    ('SmsSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-    ('WaId', '5511991982436'),
-    ('SmsStatus', 'received'),
-    ('Body', '!command show log'),
-    ('To', 'whatsapp:+14155238886'),
-    ('NumSegments', '1'),
-    ('ReferralNumMedia', '0'),
-    ('MessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-    ('AccountSid', 'ACc906b1cb84d639c680889d5ab72f36d1'),
-    ('From', 'whatsapp:+5511991982436'),
-    ('ApiVersion', '2010-04-01')
-]
-immutable_multi_dict_with_data = ImmutableMultiDict(data)
-
-respond(immutable_multi_dict_with_data)
