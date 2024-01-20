@@ -1,44 +1,41 @@
 
 def process_type(incoming_msg):
-    profileName = incoming_msg.get('ProfileName')
     msgBody = incoming_msg.get('Body')
-
     hasMedia = int(incoming_msg.get('NumMedia'))
 
-    lat = incoming_msg.get('Latitude')
-    long = incoming_msg.get('Longitude')
+    if hasMedia == 1:
+        contentTypeMedia = incoming_msg.get('MediaContentType0')
+        urlMedia = incoming_msg.get('MediaUrl0')
 
-    contentTypeMedia = incoming_msg.get('MediaContentType0')
-    urlMedia = incoming_msg.get('MediaUrl0')
-
-    if contentTypeMedia != None:
         typeContent = contentTypeMedia.split('/')
-        print(typeContent)
+
+        if typeContent[0] == 'image' and msgBody != None:
+            return f'image and msg type'
+        
+        elif typeContent[0] == 'image':
+            return f'image type'
+
+        elif typeContent[0] == 'audio':
+            return f'audio type'
+
+        elif typeContent[0] == 'video':
+            return f'video type'
+
+        elif typeContent[0] == 'application':
+            return f'application type'
+        
+        elif typeContent[0] == 'text':
+            return f'text type'
+        
     else:
+        lat = incoming_msg.get('Latitude')
+        long = incoming_msg.get('Longitude')
+
         if lat != None and long != None:
-            return f'location type | {hasMedia}'
+            return f'location type'
         
         else:
-            return f'text type | {hasMedia}'
-
-
-
-    if typeContent[0] == 'image':
-        return f'image type | {hasMedia}'
-
-    elif typeContent[0] == 'audio':
-        return f'audio type | {hasMedia}'
-
-    elif typeContent[0] == 'video':
-        return f'video type | {hasMedia}'
-
-    elif typeContent[0] == 'application':
-        return f'application type | {hasMedia}'
-    
-    elif typeContent[0] == 'text':
-        return f'text type | {hasMedia}'
-
-    return f'User: *{profileName}*\n\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
+            return f'msg type'
 
 
     ''' 

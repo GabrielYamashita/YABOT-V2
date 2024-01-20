@@ -3,6 +3,8 @@ import os
 import requests
 from dotenv import load_dotenv
 
+import vobject
+
 # Replace 'your_account_sid' and 'your_auth_token' with your actual Twilio credentials
 load_dotenv()
 account_sid = os.getenv('ACCOUNT_SID')
@@ -22,13 +24,20 @@ response = requests.get(
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
     # Access the binary content of the media
-    content = response.content
-    # print(content)
-    # print("")
+    content = response.content.decode('utf-8')
+    vcard = vobject.readOne(content)
+
+    if vcard:
+        for prop in vcard.getChildren():
+            print(f"{prop.name}: {prop.value}")
+        # print(vcard)
+        # print(f"Full Name: {vcard.fn.value}")
+        # print(f"Email: {vcard.email.value}")
+        # print(f"Phone: {vcard.tel.value}")
 
     # Now you can do something with the media content, e.g., save it to a file
-    with open('content.txt', 'wb') as file:
-        file.write(content)
+    # with open('content.txt', 'wb') as file:
+    #     file.write(content)
 else:
     print(f"Failed to retrieve media. Status code: {response.status_code}")
 
