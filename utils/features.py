@@ -3,7 +3,7 @@ def process_type(incoming_msg):
     profileName = incoming_msg.get('ProfileName')
     msgBody = incoming_msg.get('Body')
 
-    hasMedia = int(incoming_msg.get('NumMedia'))
+    hasMedia = bool(incoming_msg.get('NumMedia'))
 
     lat = incoming_msg.get('Latitude')
     long = incoming_msg.get('Longitude')
