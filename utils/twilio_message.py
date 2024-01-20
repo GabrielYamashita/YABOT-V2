@@ -8,8 +8,8 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 # Functions
-# from webhook_command import process_command
-from webhook_respond import categorize_msg
+from .webhook_command import process_command
+from .webhook_respond import categorize_msg
 
 def respond(incoming_msg):
     resp = MessagingResponse()
@@ -54,21 +54,21 @@ def send_message(message):
 
     # print("Sending message:", message)
 
-respond(
-    [
-        ('SmsMessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-        ('NumMedia', '0'),
-        ('ProfileName', 'Gabriel Yamashita'),
-        ('SmsSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-        ('WaId', '5511991982436'),
-        ('SmsStatus', 'received'),
-        ('Body', '!command show log'),
-        ('To', 'whatsapp:+14155238886'),
-        ('NumSegments', '1'),
-        ('ReferralNumMedia', '0'),
-        ('MessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
-        ('AccountSid', 'ACc906b1cb84d639c680889d5ab72f36d1'),
-        ('From', 'whatsapp:+5511991982436'),
-        ('ApiVersion', '2010-04-01')
-    ]
-)
+# respond(
+#     [
+#         ('SmsMessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
+#         ('NumMedia', '0'),
+#         ('ProfileName', 'Gabriel Yamashita'),
+#         ('SmsSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
+#         ('WaId', '5511991982436'),
+#         ('SmsStatus', 'received'),
+#         ('Body', '!command show log'),
+#         ('To', 'whatsapp:+14155238886'),
+#         ('NumSegments', '1'),
+#         ('ReferralNumMedia', '0'),
+#         ('MessageSid', 'SMc7e34b5928ea30ede3380c63082a3b69'),
+#         ('AccountSid', 'ACc906b1cb84d639c680889d5ab72f36d1'),
+#         ('From', 'whatsapp:+5511991982436'),
+#         ('ApiVersion', '2010-04-01')
+#     ]
+# )
