@@ -53,5 +53,3 @@ def send_message(message):
 
     # print("Sending message:", message)
 
-
-
