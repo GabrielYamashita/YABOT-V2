@@ -27,7 +27,6 @@ def respond(incoming_msg):
     else:
         # Handle regular messages
         msg.body(categorize_msg(incoming_msg))
-        # msg.body(f"Incoming Message:\n\n{incoming_msg}")
         # msg.media(GOOD_BOY_URL)
 
     return resp

@@ -14,7 +14,7 @@
         },
         {
             "reminderType": "M",
-            "reminder": [30],
+            "reminder": [20],
             "time": "15:00",
             "message": "Faça o Registro de Horas do Mês" 
         },
