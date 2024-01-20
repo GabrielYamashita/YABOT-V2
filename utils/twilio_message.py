@@ -22,13 +22,12 @@ def respond(incoming_msg):
 
         # Handle the command and generate a response
         response_message = process_command(command, incoming_msg)
-        response_message = 'sla'
         msg.body(response_message)
             
     else:
         # Handle regular messages
-        # msg.body(categorize_msg(incoming_msg))
-        msg.body(f"Incoming Message:\n\n{incoming_msg}")
+        msg.body(categorize_msg(incoming_msg))
+        # msg.body(f"Incoming Message:\n\n{incoming_msg}")
         # msg.media(GOOD_BOY_URL)
 
     return resp
