@@ -11,9 +11,10 @@ def process_type(incoming_msg):
     contentTypeMedia = incoming_msg.get('MediaContentType0')
     urlMedia = incoming_msg.get('MediaUrl0')
 
-    typeContent = ''
+    typeContent = []
     if contentTypeMedia != None:
         typeContent = contentTypeMedia.split('/')
+        print(typeContent)
     # else:
 
 
