@@ -15,7 +15,11 @@ def process_type(incoming_msg):
         typeContent = contentTypeMedia.split('/')
         print(typeContent)
     else:
-        return f'text type | {hasMedia}'
+        if lat != None and long != None:
+            return f'location type | {hasMedia}'
+        
+        else:
+            return f'text type | {hasMedia}'
 
 
 

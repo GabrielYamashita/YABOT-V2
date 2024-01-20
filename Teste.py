@@ -9,7 +9,7 @@ account_sid = os.getenv('ACCOUNT_SID')
 auth_token = os.getenv('AUTH_TOKEN')
 
 # Assuming you have the MediaUrl0 from the incoming_message dictionary
-media_url = 'https://api.twilio.com/2010-04-01/Accounts/ACc906b1cb84d639c680889d5ab72f36d1/Messages/MMf9ceb369317080e84a50a3d3366a6b18/Media/ME5377b3a191e10aaa6568891dbd5f0faa'
+media_url = 'https://api.twilio.com/2010-04-01/Accounts/ACc906b1cb84d639c680889d5ab72f36d1/Messages/MMff63c554c34dfea5d039cdea519bf641/Media/MEd2b23bd8766fde13868b7f42ab28e703'
 
 
 
@@ -27,7 +27,7 @@ if response.status_code == 200:
     # print("")
 
     # Now you can do something with the media content, e.g., save it to a file
-    with open('content.mp3', 'wb') as file:
+    with open('content.txt', 'wb') as file:
         file.write(content)
 else:
     print(f"Failed to retrieve media. Status code: {response.status_code}")
