@@ -30,6 +30,9 @@ def process_type(incoming_msg):
 
     elif typeContent[0] == 'application':
         return f'application type | {hasMedia}'
+    
+    elif typeContent[0] == 'text':
+        return f'text type | {hasMedia}'
 
     return f'User: *{profileName}*\n\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
 
