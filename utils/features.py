@@ -3,13 +3,31 @@ def process_type(incoming_msg):
     profileName = incoming_msg.get('ProfileName')
     msgBody = incoming_msg.get('Body')
 
-    hasMedia = bool(incoming_msg.get('NumMedia'))
+    hasMedia = int(incoming_msg.get('NumMedia'))
 
     lat = incoming_msg.get('Latitude')
     long = incoming_msg.get('Longitude')
 
     contentTypeMedia = incoming_msg.get('MediaContentType0')
     urlMedia = incoming_msg.get('MediaUrl0')
+
+    typeContent = contentTypeMedia.split('/')
+
+    if typeContent[0] == 'image':
+        return 'image type'
+
+    elif typeContent[0] == 'audio':
+        return 'audio type'
+
+    elif typeContent[0] == 'video':
+        return 'video type'
+
+    elif typeContent[0] == 'application':
+        return 'application type'
+
+    else:
+        return 'text type'
+
 
     return f'User: *{profileName}*\n\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
 
