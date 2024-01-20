@@ -1,4 +1,32 @@
 
+import requests
+
+
+def process_msg(typeMsg, incoming_msg):
+    imgGen = False
+
+    if 'image' in typeMsg:
+        resp = 'Obrigado pela Imagem!'
+    elif 'video' in typeMsg:
+        resp = 'Obrigado pelo Vídeo!'
+    elif 'audio' in typeMsg:
+        resp = 'Obrigado pelo Áudio!'
+    elif 'applicatiom' in typeMsg:
+        resp = 'Obrigado pelo Documento!'
+    elif 'text' in typeMsg:
+        resp = 'Obrigado pelo Cartão de Contato!'
+    elif 'location' in typeMsg:
+        resp = 'Obrigado pela Localização!'
+    elif 'msg' in typeMsg:
+        msgBody = incoming_msg.get('Body')
+
+        if checkPhraseIntent(msgBody, [["manda", "imagem"], ["mande", "imagem"], ["manda", "img"], ["mande", "img"]]):
+            resp = 'OK, toma uma foto de um cachorro!'
+            imgGen = generateRandomDogImg()
+
+    return resp, imgGen
+
+
 def categorize_msg(incoming_msg):
     msgBody = incoming_msg.get('Body')
     hasMedia = int(incoming_msg.get('NumMedia'))
@@ -10,34 +38,55 @@ def categorize_msg(incoming_msg):
         typeContent = contentTypeMedia.split('/')
 
         if typeContent[0] == 'image' and msgBody != '':
-            return f'image and msg type | {typeContent}'
+            return f'img and msg'
         
         elif typeContent[0] == 'image':
-            return f'image type | {typeContent}'
+            return f'img'
 
         elif typeContent[0] == 'video' and msgBody != '':
-            return f'video and msg type | {typeContent}'
+            return f'video and msg'
         
         elif typeContent[0] == 'video':
-            return f'video type | {typeContent}'
+            return f'video'
 
         elif typeContent[0] == 'audio':
-            return f'audio type | {typeContent}'
+            return f'audio'
 
         elif typeContent[0] == 'application':
-            return f'application type | {typeContent}'
+            return f'application'
         
         elif typeContent[0] == 'text':
-            return f'text type | {typeContent}'
+            return f'text'
         
     else:
         lat = incoming_msg.get('Latitude')
         long = incoming_msg.get('Longitude')
 
         if lat != None and long != None:
-            return f'location type'
+            return f'location'
         
         else:
-            return f'msg type'
+            return f'msg'
 
 
+def checkPhraseIntent(string, patterns):
+    string = string.lower()
+    
+    return any(all(pattern.lower() in string for pattern in pattern_group) for pattern_group in patterns)
+
+def generateRandomDogImg():
+    response = requests.get('https://dog.ceo/api/breeds/image/random')
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the JSON response
+        data = response.json()
+
+        # Extract the image URL
+        dog_image_url = data.get('message', '')
+
+        return dog_image_url
+
+
+if __name__ == "__main__":
+    generateRandomDogImg()

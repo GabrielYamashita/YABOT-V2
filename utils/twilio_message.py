@@ -9,7 +9,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 # Functions
 from .webhook_command import process_command
-from .webhook_respond import categorize_msg
+from .webhook_respond import categorize_msg, process_msg
 
 
 # Função para Responder Mensagens
@@ -34,8 +34,12 @@ def respond(incoming_msg):
 
     # Lidando com Mensagens Genéricas
     else:
-        msg.body(categorize_msg(incoming_msg))
-        # msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3Chttps://www.youtube.com/%3E')
+        typeMsg = categorize_msg(incoming_msg)
+        response_message, imgGen = process_msg(typeMsg, incoming_msg)
+
+        msg.body(response_message)
+        if imgGen != False:
+            msg.media(imgGen)
 
     return resp
 
