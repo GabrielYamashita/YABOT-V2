@@ -4,10 +4,10 @@ def process_command(command, incoming_msg):
     imgGen = False
 
     if 'qr' in command.lower():
-        link = command.split(' ')[1:]
+        link = command.split(' ')[1]
 
         resp = f'QR Code Generated {link}'
-        imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3C{link}%3E'
+        imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
 
     else:
         resp = 'Command not Found!y'
