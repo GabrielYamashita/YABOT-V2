@@ -6,7 +6,7 @@ def process_command(command, incoming_msg):
     if 'qr' in command.lower():
         link = command.split(' ')[1:]
 
-        resp = 'QR Code Generated'
+        resp = f'QR Code Generated {link}'
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3C{link}%3E'
 
     else:

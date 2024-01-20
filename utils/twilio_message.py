@@ -22,7 +22,7 @@ def respond(incoming_msg):
 
         # Handle the command and generate a response
         response_message, imgGen = process_command(command, incoming_msg)
-        
+
         msg.body(response_message)
         if imgGen != False:
             msg.media(imgGen)
@@ -30,7 +30,7 @@ def respond(incoming_msg):
     else:
         # Handle regular messages
         msg.body(categorize_msg(incoming_msg))
-        msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3Chttps://www.youtube.com/%3E')
+        # msg.media('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%3Chttps://www.youtube.com/%3E')
 
     return resp
 
