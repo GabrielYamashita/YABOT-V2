@@ -11,22 +11,24 @@ def process_type(incoming_msg):
     contentTypeMedia = incoming_msg.get('MediaContentType0')
     urlMedia = incoming_msg.get('MediaUrl0')
 
-    typeContent = contentTypeMedia.split('/')
+    if contentTypeMedia != None:
+        typeContent = contentTypeMedia.split('/')
+    else
 
     if typeContent[0] == 'image':
-        return 'image type'
+        return f'image type | {hasMedia}'
 
     elif typeContent[0] == 'audio':
-        return 'audio type'
+        return f'audio type | {hasMedia}'
 
     elif typeContent[0] == 'video':
-        return 'video type'
+        return f'video type | {hasMedia}'
 
     elif typeContent[0] == 'application':
-        return 'application type'
+        return f'application type | {hasMedia}'
 
     else:
-        return 'text type'
+        return f'text type | {hasMedia}'
 
 
     return f'User: *{profileName}*\n\nMessage Body: {msgBody}\n\nNum Media: {hasMedia}\n\nLatitude: {lat}\nLongitude: {long}\n\nMedia Content Type 0: {contentTypeMedia}\nURL Media: {urlMedia}'
