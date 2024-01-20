@@ -9,7 +9,7 @@ def process_type(incoming_msg):
 
         typeContent = contentTypeMedia.split('/')
 
-        if typeContent[0] == 'image' and msgBody != None:
+        if typeContent[0] == 'image' and msgBody != '':
             return f'image and msg type'
         
         elif typeContent[0] == 'image':
