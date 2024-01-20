@@ -23,6 +23,8 @@ def process_msg(typeMsg, incoming_msg):
         if checkPhraseIntent(msgBody, [["manda", "imagem"], ["mande", "imagem"], ["manda", "img"], ["mande", "img"]]):
             resp = 'OK, toma uma foto de um cachorro!'
             imgGen = generateRandomDogImg()
+        else:
+            resp = 'Obrigado pela Mensagem!'
 
     return resp, imgGen
 
