@@ -6,3 +6,4 @@ def process_command(command, incoming_msg):
 
 
     return f"Command processed: '{command}'"
+
