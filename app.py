@@ -1,6 +1,6 @@
+
 # Environment
 import os
-# from dotenv import load_dotenv
 
 # Flask Environment
 from flask import Flask, request
@@ -12,24 +12,16 @@ import datetime
 from pytz import timezone
 
 # Funções Importantes
-from utils import features
+from utils import twilio_message
 
-# Credentials Import
-# load_dotenv() # carrega as variáveis de ambiente
-# account_sid = os.getenv('ACCOUNT_SID') # account sid para rodar localmente
-# auth_token = os.getenv('AUTH_TOKEN')
-
-
-# Init of Classes
-# client = Client(account_sid, auth_token)
 
 app = Flask(__name__)
 scheduler = APScheduler()
 
-GOOD_BOY_URL = (
-    "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1"
-    "&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-)
+# GOOD_BOY_URL = (
+#     "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1"
+#     "&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+# )
 
 
 # Home Page
@@ -42,30 +34,7 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     incoming_msg = request.form
-    # msgBody = incoming_msg.get('Body')
-    
-    # hasMedia = int(incoming_msg.get('NumMedia'))
-    # contentTypeMedia = incoming_msg.get('MediaContentType0')
-    # urlMedia = incoming_msg.get('MediaUrl0')
-
-    # resp = MessagingResponse()
-    # msg = resp.message()
-
-    resp = features.respond(incoming_msg)
-
-    # Feature 1: Commands processing
-    # if msgBody.lower().startswith("!command"):
-    #     command = " ".join(msgBody.split(" ")[1:])
-
-    #     # Handle the command and generate a response
-    #     response_message = process_command(command, incoming_msg)
-    #     msg.body(response_message)
-            
-    # else:
-    #     # Handle regular messages
-    #     # msg.body(f"Incoming Message:\n\n{incoming_msg}\n\n{'-'*7}\n\nBody: {msgBody}\nNumMedia: {hasMedia}\nMedia Content Type: {contentTypeMedia}\nMedia URL: {urlMedia}")
-    #     msg.body(features.categorize_msg(incoming_msg))
-    #     # msg.media(GOOD_BOY_URL)
+    resp = twilio_message.respond(incoming_msg)
 
     return str(resp)
 
@@ -95,42 +64,22 @@ def send_reminders():
                     (reminder["reminderType"] == "W" and weekDay in reminder["reminder"]) or
                     (0 in reminder["reminder"])
                 ):
-                    features.send_message(reminder["message"])
+                    twilio_message.send_message(reminder["message"])
 
                 # Check for Monthly Reminders
                 if (
                     (reminder["reminderType"] == "M" and monthDay in reminder["reminder"]) or
                     (False)
                 ):
-                    features.send_message(reminder["message"])
+                    twilio_message.send_message(reminder["message"])
 
-
-# def process_command(command, incoming_msg):
-#     # Implement command processing logic
-#     if command == 'show log':
-#         return f'Incoming Message:\n\n{incoming_msg}'
-
-
-#     return f"Command processed: '{command}'"
-
-
-
-# def send_message(message):
-#     from_whatsapp_number = 'whatsapp:+14155238886'
-#     to_whatsapp_number = 'whatsapp:+5511991982436'
-
-#     message = client.messages.create(
-#         body=message,
-#         from_=from_whatsapp_number,
-#         to=to_whatsapp_number
-#     )
 
 
 # Running the App
 if __name__ == "__main__":
     # Initializing
     print("Running...")
-    features.send_message("New Deploy has been Launched")
+    twilio_message.send_message("New Deploy has been Launched")
 
     # Scheduler
     scheduler.init_app(app)
