@@ -11,7 +11,7 @@ def getCurrentTime(tz):
     return timeNow
 
 
-def read_reminders(file="../data/reminders.json"):
+def read_reminders(file):
     with open(file, "r", encoding="utf-8") as f:
         data = json.load(f)
 

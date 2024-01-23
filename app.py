@@ -44,7 +44,7 @@ def send_reminders():
         # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
         
         # Carregando Reminders
-        data = scheduler_message.read_reminders()
+        data = scheduler_message.read_reminders('./data/reminders.json')
 
         # Checando cada Reminder
         for reminder in data["reminders"]:
