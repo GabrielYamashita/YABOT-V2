@@ -6,13 +6,10 @@ import os
 from flask import Flask, request
 from flask_apscheduler import APScheduler
 
-# Dates Checkup
-import json
-import datetime
-from pytz import timezone
-
 # Webhook Handler
 from utils import twilio_message
+from utils import scheduler_message
+
 
 # Incialização do App
 app = Flask(__name__)
@@ -38,9 +35,7 @@ def webhook():
 @scheduler.task('interval', id='send_reminders', seconds=1)
 def send_reminders():
     # Puxando Horário com Fuso de SP
-    utc = datetime.datetime.now(datetime.timezone.utc)
-    BRSP = timezone('America/Sao_Paulo')
-    timeNow = utc.astimezone(BRSP)
+    timeNow = scheduler_message.getCurrentTime('America/Sao_Paulo')
 
     if timeNow.second == 0:
         current_time = timeNow.strftime("%H:%M") # current time
@@ -50,8 +45,7 @@ def send_reminders():
         # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
         
         # Carregando Reminders
-        with open("./data/reminders.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
+        data = scheduler_message.read_reminders()
 
         # Checando cada Reminder
         for reminder in data["reminders"]:

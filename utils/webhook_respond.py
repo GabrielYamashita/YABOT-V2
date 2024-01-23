@@ -88,7 +88,3 @@ def generateRandomDogImg():
         dog_image_url = data.get('message', '')
 
         return dog_image_url
-
-
-if __name__ == "__main__":
-    generateRandomDogImg()
