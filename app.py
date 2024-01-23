@@ -10,7 +10,6 @@ from flask_apscheduler import APScheduler
 from utils import twilio_message
 from utils import scheduler_message
 
-
 # Incialização do App
 app = Flask(__name__)
 scheduler = APScheduler()

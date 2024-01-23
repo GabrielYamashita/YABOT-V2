@@ -5,7 +5,7 @@ from pytz import timezone
 
 def getCurrentTime(tz):
     utc = datetime.datetime.now(datetime.timezone.utc)
-    BRSP = timezone(tz)
+    BRSP = timezone(timezone)
     timeNow = utc.astimezone(BRSP)
 
     return timeNow
@@ -16,3 +16,6 @@ def read_reminders(file="../data/reminders.json"):
         data = json.load(f)
 
     return data
+
+if __name__ == '__main__':
+    print(read_reminders())
