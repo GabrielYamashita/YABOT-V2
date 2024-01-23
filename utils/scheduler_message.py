@@ -5,7 +5,7 @@ from pytz import timezone
 
 def getCurrentTime(tz):
     utc = datetime.datetime.now(datetime.timezone.utc)
-    BRSP = timezone(timezone)
+    BRSP = timezone(tz)
     timeNow = utc.astimezone(BRSP)
 
     return timeNow
