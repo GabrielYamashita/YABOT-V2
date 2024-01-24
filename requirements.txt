@@ -3,3 +3,4 @@ Flask-APScheduler==1.13.1
 python-dotenv==1.0.0
 pytz==2023.3
 twilio==8.11.0
+gunicorn==21.2.0
