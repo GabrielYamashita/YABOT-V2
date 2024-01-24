@@ -16,7 +16,9 @@ def process_msg(typeMsg, incoming_msg):
     elif 'text' in typeMsg:
         resp = 'Obrigado pelo Cartão de Contato!'
     elif 'location' in typeMsg:
-        resp = 'Obrigado pela Localização!'
+        lat = incoming_msg.get('latitude')
+        long = incoming_msg.get('longitude')
+        resp = f'Obrigado pela Localização!\nLat: {lat}, Long: {long}'
     elif 'msg' in typeMsg:
         msgBody = incoming_msg.get('Body')
 

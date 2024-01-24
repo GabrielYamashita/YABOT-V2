@@ -65,12 +65,6 @@
             "reminder": [7],
             "time": "16:00",
             "message": "Mensagem Sábado"
-        },
-        {
-            "reminderType": "W",
-            "reminder": [3],
-            "time": "21:57",
-            "message": "Dev Test"
         }
     ]
 }
