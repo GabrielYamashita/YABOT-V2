@@ -19,12 +19,12 @@ def process_command(command):
 
         curState = data["state"]
         setState = command.split(' ')[1]
-        data["state"] = curState
+        data["state"] = setState
 
         with open(file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
 
-        resp = setState
+        resp = curState
 
 
 
