@@ -19,10 +19,22 @@
             "message": "join barn-research"
         },
         {
+            "reminderType": "W",
+            "reminder": [3,5,7],
+            "time": "17:30",
+            "message": "Jogar Lixo Fora!"
+        },
+        {
             "reminderType": "M",
             "reminder": [20],
             "time": "15:00",
             "message": "Faça o Registro de Horas do Mês" 
+        },
+        {
+            "reminderType": "M",
+            "reminder": [26],
+            "time": "00:15",
+            "message": "Teste Emoji 💀❌👀👇✅" 
         }
     ]
 }
