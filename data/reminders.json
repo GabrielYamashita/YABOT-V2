@@ -10,7 +10,7 @@
             "reminderType": "W",
             "reminder": [0],
             "time": "18:00",
-            "message": " 👇 Mande a mensagem da Sandbox! 👇"
+            "message": " 👇 Mande a Mensagem da Sandbox! 👇"
         },
         {
             "reminderType": "W",
@@ -22,19 +22,13 @@
             "reminderType": "W",
             "reminder": [3,5,7],
             "time": "17:30",
-            "message": "Jogar Lixo Fora!"
+            "message": "Jogar Lixo Fora! 🚮"
         },
         {
             "reminderType": "M",
             "reminder": [20],
             "time": "15:00",
             "message": "Faça o Registro de Horas do Mês" 
-        },
-        {
-            "reminderType": "M",
-            "reminder": [26],
-            "time": "00:15",
-            "message": "Teste Emoji 💀❌👀👇✅" 
         }
     ]
 }
