@@ -7,8 +7,12 @@ def process_msg(typeMsg, incoming_msg):
 
     if 'image' in typeMsg:
         resp = 'Obrigado pela Imagem!'
+    elif 'image' in typeMsg and 'msg' in typeMsg:
+        resp = 'Obrigado pela Mensagem e Imagem!'
     elif 'video' in typeMsg:
         resp = 'Obrigado pelo Vídeo!'
+    elif 'video' in typeMsg and 'msg' in typeMsg:
+        resp = 'Obrigado pelo Mensagem e Vídeo!'
     elif 'audio' in typeMsg:
         resp = 'Obrigado pelo Áudio!'
     elif 'applicatiom' in typeMsg:
@@ -43,32 +47,25 @@ def categorize_msg(incoming_msg):
 
         if typeContent[0] == 'image' and msgBody != '':
             return f'img and msg'
-        
         elif typeContent[0] == 'image':
             return f'img'
-
         elif typeContent[0] == 'video' and msgBody != '':
             return f'video and msg'
-        
         elif typeContent[0] == 'video':
             return f'video'
-
         elif typeContent[0] == 'audio':
             return f'audio'
-
         elif typeContent[0] == 'application':
             return f'application'
-        
         elif typeContent[0] == 'text':
             return f'text'
-        
+
     else:
         lat = incoming_msg.get('Latitude')
         long = incoming_msg.get('Longitude')
 
         if lat != None and long != None:
             return f'location'
-        
         else:
             return f'msg'
 
