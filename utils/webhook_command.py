@@ -1,4 +1,6 @@
 
+import json
+
 def process_command(command):
     # Define Geração de Imagem = False
     imgGen = False
@@ -9,6 +11,22 @@ def process_command(command):
 
         resp = f'QR Code Generated for {link}'
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
+
+    elif 'set' in command.lower():
+        file = './data/reminders.json'
+        with open(file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        curState = data["state"]
+        setState = command.split(' ')[1]
+        data["state"] = curState
+
+        with open(file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
+
+        resp = setState
+
+
 
 
 
