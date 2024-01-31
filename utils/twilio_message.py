@@ -36,31 +36,8 @@ def respond(incoming_msg):
     else:
         typeMsg = categorize_msg(incoming_msg)
         response_message, imgGen = process_msg(typeMsg, incoming_msg)
-        
 
-
-
-
-        import re
-        text = msgBody
-
-        type_pattern = r"Reminder Type: ([^\n]+)"
-        reminder_pattern = r"Reminder: ([^\n]+)"
-        time_pattern = r"Time: ([^\n]+)"
-        message_pattern = r"Message: ([^\n]+)"
-
-        # Use regular expressions to extract the data
-        type = re.search(type_pattern, text).group(1)
-        reminder = re.search(reminder_pattern, text).group(1)
-        time = re.search(time_pattern, text).group(1)
-        message = re.search(message_pattern, text).group(1)
-
-
-
-
-
-
-        msg.body(response_message + '\n\n\n' + f'type {type}' + f'reminder {reminder}' + f'time {time}' + f'message {message}')
+        msg.body(response_message)
         if imgGen != False:
             msg.media(imgGen)
 
