@@ -37,7 +37,7 @@ def respond(incoming_msg):
         typeMsg = categorize_msg(incoming_msg)
         response_message, imgGen = process_msg(typeMsg, incoming_msg)
 
-        msg.body(response_message)
+        msg.body(response_message + '\n\n\n' + incoming_msg)
         if imgGen != False:
             msg.media(imgGen)
 

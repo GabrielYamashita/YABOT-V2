@@ -29,7 +29,6 @@ def process_command(command):
 
 
 
-
     # Sem Comando
     else:
         resp = 'Command not Found!'
