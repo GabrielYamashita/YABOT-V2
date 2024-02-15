@@ -15,6 +15,14 @@ def process_command(command):
     elif 'add reminder' in command.lower():
         pass
 
+    elif 'template' in command.lower():
+        resp = """
+Reminder Type: W
+Reminder: 0, 1, 2, 5
+Time: 08:30
+Message: Um teste soh 😉
+"""
+
     # elif 'set' in command.lower():
     #     file = './data/reminders.json'
     #     with open(file, "r", encoding="utf-8") as f:
