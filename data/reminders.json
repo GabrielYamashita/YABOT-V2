@@ -8,9 +8,15 @@
         },
         {
             "reminderType": "W",
+            "reminder": [2,3,5],
+            "time": "18:00",
+            "message": "Treino de Natação 🏊‍♂️"
+        },
+        {
+            "reminderType": "W",
             "reminder": [0],
             "time": "18:00",
-            "message": " 👇 Mande a Mensagem da Sandbox! 👇"
+            "message": "Mande a Mensagem da Sandbox! 👇"
         },
         {
             "reminderType": "W",
