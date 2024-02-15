@@ -42,9 +42,9 @@ def process_msg(typeMsg, incoming_msg):
     imgGen = False
     print(typeMsg)
 
-    if 'image' in typeMsg:
+    if 'img' in typeMsg:
         resp = 'Obrigado pela Imagem!'
-    elif 'image' in typeMsg and 'msg' in typeMsg:
+    elif 'img' in typeMsg and 'msg' in typeMsg:
         resp = 'Obrigado pela Mensagem e Imagem!'
     elif 'video' in typeMsg:
         resp = 'Obrigado pelo Vídeo!'
