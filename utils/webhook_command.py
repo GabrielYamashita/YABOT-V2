@@ -14,6 +14,13 @@ def process_command(command):
         resp = f'QR Code Generated for {link}'
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
 
+    elif 'show json' in command.lower():
+        file = './data/reminders.json'
+        with open(file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        resp = data
+
     elif 'add reminder' in command.lower():
         text = ' '.join(command.split(' ')[3:]).strip()
 
