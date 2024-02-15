@@ -46,9 +46,8 @@ def process_command(command):
 
         with open(file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
-        
 
-        resp = 'Reminder adicionado!'
+        resp = f'Reminder adicionado! \n\n{data}'
 
     elif 'template' in command.lower():
         resp = """
