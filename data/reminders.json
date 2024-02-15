@@ -2,39 +2,55 @@
     "reminders": [
         {
             "reminderType": "W",
-            "reminder": [0],
+            "reminder": [
+                0
+            ],
             "time": "10:00",
             "message": "Bom dia, Hora de Acordar!"
         },
         {
             "reminderType": "W",
-            "reminder": [2,3,5],
+            "reminder": [
+                2,
+                3,
+                5
+            ],
             "time": "18:00",
-            "message": "Treino de Natação 🏊‍♂️"
+            "message": "Treino de Nata\u00e7\u00e3o \ud83c\udfca\u200d\u2642\ufe0f"
         },
         {
             "reminderType": "W",
-            "reminder": [0],
+            "reminder": [
+                0
+            ],
             "time": "18:00",
-            "message": "Mande a Mensagem da Sandbox! 👇"
+            "message": "Mande a Mensagem da Sandbox! \ud83d\udc47"
         },
         {
             "reminderType": "W",
-            "reminder": [0],
+            "reminder": [
+                0
+            ],
             "time": "18:01",
             "message": "join barn-research"
         },
         {
             "reminderType": "W",
-            "reminder": [3,5,7],
+            "reminder": [
+                3,
+                5,
+                7
+            ],
             "time": "17:30",
-            "message": "Jogar Lixo Fora! 🚮"
+            "message": "Jogar Lixo Fora! \ud83d\udeae"
         },
         {
             "reminderType": "M",
-            "reminder": [20],
+            "reminder": [
+                20
+            ],
             "time": "15:00",
-            "message": "Faça o Registro de Horas do Mês" 
+            "message": "Fa\u00e7a o Registro de Horas do M\u00eas"
         }
     ],
     "state": "start"

@@ -1,5 +1,7 @@
 
+import re
 import json
+
 
 def process_command(command):
     # Define Geração de Imagem = False
@@ -13,10 +15,33 @@ def process_command(command):
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
 
     elif 'add reminder' in command.lower():
-        reminder = ' '.join(command.split(' ')[3:]).strip()
+        text = ' '.join(command.split(' ')[3:]).strip()
+
+        type = re.search(r"Reminder Type: ([^\n]+)", text).group(1)
+        reminder = re.search(r"Reminder: ([^\n]+)", text).group(1)
+        time = re.search(r"Time: ([^\n]+)", text).group(1)
+        message = re.search(r"Message: ([^\n]+)", text).group(1)
+
+        reminder = [int(num) for num in reminder.split(",")]
+
+        d = {
+            "reminderType": type,
+            "reminder": reminder,
+            "time": time,
+            "message": message
+        }
+
+        file = './data/reminders.json'
+        with open(file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        data['reminders'].append(d)
+
+        with open(file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
         
 
-        resp = reminder
+        resp = 'Reminder adicionado!'
 
     elif 'template' in command.lower():
         resp = """
