@@ -39,17 +39,18 @@ def categorize_msg(incoming_msg):
 
 
 def process_msg(typeMsg, incoming_msg):
+    resp = None
     imgGen = False
-    print(typeMsg)
+    # print(typeMsg)
 
-    if 'img' in typeMsg:
-        resp = 'Obrigado pela Imagem!'
-    elif 'img' in typeMsg and 'msg' in typeMsg:
+    if 'img' in typeMsg and 'msg' in typeMsg:
         resp = 'Obrigado pela Mensagem e Imagem!'
-    elif 'video' in typeMsg:
-        resp = 'Obrigado pelo Vídeo!'
+    elif 'img' in typeMsg:
+        resp = 'Obrigado pela Imagem!'
     elif 'video' in typeMsg and 'msg' in typeMsg:
         resp = 'Obrigado pelo Mensagem e Vídeo!'
+    elif 'video' in typeMsg:
+        resp = 'Obrigado pelo Vídeo!'
     elif 'audio' in typeMsg:
         resp = 'Obrigado pelo Áudio!'
     elif 'applicatiom' in typeMsg:
