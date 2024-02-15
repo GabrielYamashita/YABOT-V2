@@ -13,7 +13,8 @@ def process_command(command):
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
 
     elif 'add reminder' in command.lower():
-        reminder = command.split(' ')[2:]
+        reminder = ' '.join(command.split(' ')[3:]).strip()
+        
 
         resp = reminder
 
