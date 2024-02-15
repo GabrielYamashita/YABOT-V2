@@ -53,34 +53,12 @@
             "message": "Fa\u00e7a o Registro de Horas do M\u00eas"
         },
         {
-            "reminderType": "M",
+            "reminderType": "W",
             "reminder": [
-                20
+                0
             ],
             "time": "09:07",
             "message": "Fa\u00e7a o Registro de Horas do M\u00eas"
-        },
-        {
-            "reminderType": "W",
-            "reminder": [
-                0,
-                1,
-                2,
-                5
-            ],
-            "time": "08:30",
-            "message": "Um teste soh \ud83d\ude09"
-        },
-        {
-            "reminderType": "W",
-            "reminder": [
-                0,
-                1,
-                2,
-                5
-            ],
-            "time": "08:30",
-            "message": "Um teste soh \ud83d\ude09"
         }
     ],
     "state": "start"
