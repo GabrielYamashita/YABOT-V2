@@ -41,7 +41,6 @@ def categorize_msg(incoming_msg):
 def process_msg(typeMsg, incoming_msg):
     resp = None
     imgGen = False
-    # print(typeMsg)
 
     if 'img' in typeMsg and 'msg' in typeMsg:
         resp = 'Obrigado pela Mensagem e Imagem!'
