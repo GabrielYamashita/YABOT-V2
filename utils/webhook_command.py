@@ -23,15 +23,15 @@ def process_command(command):
 
     elif 'add reminder' in command.lower():
         text = ' '.join(command.split(' ')[3:]).strip()
-        
+
         resp = f'Reminder adicionado! \n\n{text}'
 
-        type = re.search(r"Reminder Type: ([^\n]+)", text).group(1)
-        reminder = re.search(r"Reminder: ([^\n]+)", text).group(1)
-        time = re.search(r"Time: ([^\n]+)", text).group(1)
-        message = re.search(r"Message: ([^\n]+)", text).group(1)
+        # type = re.search(r"Reminder Type: ([^\n]+)", text).group(1)
+        # reminder = re.search(r"Reminder: ([^\n]+)", text).group(1)
+        # time = re.search(r"Time: ([^\n]+)", text).group(1)
+        # message = re.search(r"Message: ([^\n]+)", text).group(1)
 
-        reminder = [int(num) for num in reminder.split(",")]
+        # reminder = [int(num) for num in reminder.split(",")]
 
         # d = {
         #     "reminderType": type,
