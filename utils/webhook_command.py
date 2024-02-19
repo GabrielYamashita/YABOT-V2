@@ -23,6 +23,8 @@ def process_command(command):
 
     elif 'add reminder' in command.lower():
         text = ' '.join(command.split(' ')[3:]).strip()
+        
+        resp = f'Reminder adicionado! \n\n{text}'
 
         type = re.search(r"Reminder Type: ([^\n]+)", text).group(1)
         reminder = re.search(r"Reminder: ([^\n]+)", text).group(1)
@@ -31,23 +33,22 @@ def process_command(command):
 
         reminder = [int(num) for num in reminder.split(",")]
 
-        d = {
-            "reminderType": type,
-            "reminder": reminder,
-            "time": time,
-            "message": message
-        }
+        # d = {
+        #     "reminderType": type,
+        #     "reminder": reminder,
+        #     "time": time,
+        #     "message": message
+        # }
 
-        file = './data/reminders.json'
-        with open(file, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        # file = './data/reminders.json'
+        # with open(file, "r", encoding="utf-8") as f:
+        #     data = json.load(f)
 
-        data['reminders'].append(d)
+        # data['reminders'].append(d)
 
-        with open(file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
+        # with open(file, 'w', encoding='utf-8') as f:
+        #     json.dump(data, f, indent=4)
 
-        resp = f'Reminder adicionado! \n\n{d}'
 
     elif 'template' in command.lower():
         resp = """
