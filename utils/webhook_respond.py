@@ -65,7 +65,7 @@ def process_msg(typeMsg, incoming_msg):
     elif 'msg' in typeMsg:
         msgBody = incoming_msg.get('Body')
 
-        if checkPhraseIntent(msgBody, [["manda", "imagem"], ["mande", "imagem"], ["manda", "img"], ["mande", "img"]]):
+        if checkPhraseIntent(msgBody, [["manda", "imagem"], ["mande", "imagem"], ["manda", "img"], ["mande", "img"], ["manda", "foto"], ["mande", "foto"], ["manda", "ft"], ["mande", "ft"]]):
             resp = 'OK, toma uma foto de um cachorro!'
             imgGen = generateRandomDogImg()
         else:

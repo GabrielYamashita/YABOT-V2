@@ -1,6 +1,8 @@
 
 import re
-import json
+# import json
+
+from ..JSON import CRUD
 
 
 def process_command(command):
@@ -16,10 +18,8 @@ def process_command(command):
 
     elif 'show json' in command.lower():
         file = './data/reminders.json'
-        with open(file, "r", encoding="utf-8") as f:
-            data = json.load(f)
 
-        resp = data
+        resp = CRUD.read_reminders(file)
 
     elif 'add reminder' in command.lower():
         # text = ' '.join(command.split(' ')[3:]).strip()
@@ -31,7 +31,7 @@ def process_command(command):
 
         reminder = [int(num) for num in reminder.split(",")]
 
-        d = {
+        reminderDict = {
             "reminderType": type,
             "reminder": reminder,
             "time": time,
@@ -39,15 +39,16 @@ def process_command(command):
         }
 
         file = './data/reminders.json'
-        with open(file, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        CRUD.add_reminder(file, reminderDict)
+        # with open(file, "r", encoding="utf-8") as f:
+        #     data = json.load(f)
 
-        data['reminders'].append(d)
+        # data['reminders'].append(d)
 
-        with open(file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
+        # with open(file, 'w', encoding='utf-8') as f:
+        #     json.dump(data, f, indent=4)
 
-        resp = f'Reminder adicionado! \n-->{d}<--'
+        resp = f'Reminder adicionado!'
 
     elif 'template' in command.lower():
         resp = """

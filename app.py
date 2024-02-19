@@ -10,6 +10,9 @@ from flask_apscheduler import APScheduler
 from utils import twilio_message
 from utils import scheduler_message
 
+# JSON Handler
+from JSON import CRUD
+
 # Incialização do App
 app = Flask(__name__)
 scheduler = APScheduler()
@@ -44,7 +47,7 @@ def send_reminders():
         # print(f"{timeNow} | {current_time} | {weekDay} | {monthDay}")
         
         # Carregando Reminders
-        data = scheduler_message.read_reminders('./data/reminders.json')
+        data = CRUD.read_reminders('./data/reminders.json')
 
         # Checando cada Reminder
         for reminder in data["reminders"]:

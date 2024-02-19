@@ -1,5 +1,5 @@
 
-import json
+# import json
 import datetime
 from pytz import timezone
 
@@ -11,11 +11,11 @@ def getCurrentTime(tz='America/Sao_Paulo'):
     return timeNow
 
 
-def read_reminders(file):
-    with open(file, "r", encoding="utf-8") as f:
-        data = json.load(f)
+# def read_reminders(file):
+#     with open(file, "r", encoding="utf-8") as f:
+#         data = json.load(f)
 
-    return data
+#     return data
 
 if __name__ == '__main__':
-    print(read_reminders("../data/reminders.json"))
+    print('main run')
