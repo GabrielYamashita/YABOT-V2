@@ -4,6 +4,8 @@ import re
 # JSON Handler
 from utils import JSON_Handler
 
+from Funcs import Teste
+
 
 def process_command(command):
     # Define Geração de Imagem = False
@@ -57,6 +59,11 @@ def process_command(command):
         currState = JSON_Handler.change_state(reminderPath, setState)
 
         resp = f'The current state is: *{currState}*'
+
+    elif 'teste' in command.lower():
+        resp = Teste.randomNumber()
+
+
 
 
     # Sem Comando
