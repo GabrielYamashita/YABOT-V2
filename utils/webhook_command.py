@@ -61,7 +61,7 @@ def process_command(command):
         resp = f'The current state is: *{currState}*'
 
     elif 'teste' in command.lower():
-        resp = random.randomNumber()
+        resp = str(random.randomNumber())
 
 
 
