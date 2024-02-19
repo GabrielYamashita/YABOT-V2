@@ -11,7 +11,7 @@ from utils import twilio_message
 from utils import scheduler_message
 
 # JSON Handler
-from utils import CRUD
+from utils import JSON_Handler
 
 # Incialização do App
 app = Flask(__name__)
@@ -48,7 +48,7 @@ def send_reminders():
         
         # Carregando Reminders
         reminderPath = './data/reminders.json'
-        data = CRUD.read_reminders(reminderPath)
+        data = JSON_Handler.read_reminders(reminderPath)
 
         # Checando cada Reminder
         for reminder in data["reminders"]:

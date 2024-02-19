@@ -1,8 +1,8 @@
 
 import re
-# import json
 
-from utils import CRUD
+# JSON Handler
+from utils import JSON_Handler
 
 
 def process_command(command):
@@ -16,14 +16,20 @@ def process_command(command):
         resp = f'QR Code Generated for {link}'
         imgGen = f'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=%3C{link}%3E'
 
+
+    # Comando para mostrar o JSON --> Resumo?
     elif 'show json' in command.lower():
-        file = './data/reminders.json'
+        reminderPath = './data/reminders.json'
+        resp = JSON_Handler.read_reminders(reminderPath)
 
-        resp = CRUD.read_reminders(file)
 
+    # Comando para enviar Template de Add Reminder
+    elif 'template' in command.lower():
+        resp = "Reminder Type: \nReminder: \nTime: \nMessage: "
+
+
+    # Comando para Adicionar Reminder
     elif 'add reminder' in command.lower():
-        # text = ' '.join(command.split(' ')[3:]).strip()
-
         type = re.search(r"Reminder Type: ([^\n]+)", command).group(1)
         reminder = re.search(r"Reminder: ([^\n]+)", command).group(1)
         time = re.search(r"Time: ([^\n]+)", command).group(1)
@@ -38,41 +44,19 @@ def process_command(command):
             "message": message
         }
 
-        file = './data/reminders.json'
-        CRUD.add_reminder(file, reminderDict)
-        # with open(file, "r", encoding="utf-8") as f:
-        #     data = json.load(f)
-
-        # data['reminders'].append(d)
-
-        # with open(file, 'w', encoding='utf-8') as f:
-        #     json.dump(data, f, indent=4)
+        reminderPath = './data/reminders.json'
+        JSON_Handler.add_reminder(reminderPath, reminderDict)
 
         resp = f'Reminder adicionado!'
 
-    elif 'template' in command.lower():
-        resp = """
-Reminder Type: 
-Reminder: 
-Time: 
-Message: 
-"""
 
-    # elif 'set' in command.lower():
-    #     file = './data/reminders.json'
-    #     with open(file, "r", encoding="utf-8") as f:
-    #         data = json.load(f)
+    # Comando para Mudar o State --> Conversacional?
+    elif 'set' in command.lower():
+        reminderPath = './data/reminders.json'
+        setState = command.split(' ')[1]
+        currState = JSON_Handler.change_state(reminderPath, setState)
 
-    #     curState = data["state"]
-    #     setState = command.split(' ')[1]
-    #     data["state"] = setState
-
-    #     with open(file, 'w', encoding='utf-8') as f:
-    #         json.dump(data, f, indent=4)
-
-    #     resp = curState
-
-
+        resp = f'The current state is: *{currState}*'
 
 
     # Sem Comando
