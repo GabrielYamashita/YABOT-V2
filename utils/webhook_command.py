@@ -30,15 +30,15 @@ def process_command(command):
         message = re.search(r"Message: ([^\n]+)", command).group(1)
 
         reminder = [int(num) for num in reminder.split(",")]
-        resp = f'Reminder adicionado! \n-->\n{command}\n\n- {type}<--'
 
-        # d = {
-        #     "reminderType": type,
-        #     "reminder": reminder,
-        #     "time": time,
-        #     "message": message
-        # }
+        d = {
+            "reminderType": type,
+            "reminder": reminder,
+            "time": time,
+            "message": message
+        }
 
+        resp = f'Reminder adicionado! \n-->{d}<--'
         # file = './data/reminders.json'
         # with open(file, "r", encoding="utf-8") as f:
         #     data = json.load(f)
