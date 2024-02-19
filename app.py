@@ -11,7 +11,7 @@ from utils import twilio_message
 from utils import scheduler_message
 
 # JSON Handler
-from utils import JSON_Handler
+from JSON import JSON_Handler
 
 # Incialização do App
 app = Flask(__name__)

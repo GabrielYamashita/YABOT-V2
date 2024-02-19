@@ -2,9 +2,7 @@
 import re
 
 # JSON Handler
-from utils import JSON_Handler
-
-from handlers import random
+from JSON import JSON_Handler
 
 
 def process_command(command):
@@ -60,8 +58,8 @@ def process_command(command):
 
         resp = f'The current state is: *{currState}*'
 
-    elif 'teste' in command.lower():
-        resp = str(random.randomNumber())
+    # elif 'teste' in command.lower():
+    #     resp = str(random.randomNumber())
 
 
 
