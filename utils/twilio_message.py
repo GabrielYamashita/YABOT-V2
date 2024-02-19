@@ -20,7 +20,7 @@ def respond(incoming_msg):
     msgBody = incoming_msg.get('Body')
 
     # Lidando com Comandos
-    if msgBody.lower().startswith("!command"):
+    if msgBody.lower().startswith("!"):
         # Selecionando texto pós chave de comando
         command = " ".join(msgBody.split(" ")[1:])
 
