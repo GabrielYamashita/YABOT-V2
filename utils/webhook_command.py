@@ -2,7 +2,7 @@
 import re
 # import json
 
-from JSON import CRUD
+from JSON_Handler import CRUD
 
 
 def process_command(command):
