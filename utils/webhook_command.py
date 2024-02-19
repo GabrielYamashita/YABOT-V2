@@ -4,7 +4,7 @@ import re
 # JSON Handler
 from utils import JSON_Handler
 
-from Funcs import Teste
+from handlers import Teste
 
 
 def process_command(command):
