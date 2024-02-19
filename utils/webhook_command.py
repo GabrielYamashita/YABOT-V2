@@ -38,16 +38,16 @@ def process_command(command):
             "message": message
         }
 
+        file = './data/reminders.json'
+        with open(file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        data['reminders'].append(d)
+
+        with open(file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
+
         resp = f'Reminder adicionado! \n-->{d}<--'
-        # file = './data/reminders.json'
-        # with open(file, "r", encoding="utf-8") as f:
-        #     data = json.load(f)
-
-        # data['reminders'].append(d)
-
-        # with open(file, 'w', encoding='utf-8') as f:
-        #     json.dump(data, f, indent=4)
-
 
     elif 'template' in command.lower():
         resp = """
