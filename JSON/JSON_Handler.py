@@ -1,6 +1,7 @@
 
 import json 
 
+
 # Read JSON File
 def read_reminders(filePath):
     with open(filePath, "r", encoding="utf-8") as f:
