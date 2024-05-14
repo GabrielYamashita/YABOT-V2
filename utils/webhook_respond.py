@@ -34,7 +34,7 @@ def categorize_msg(incoming_msg):
         if lat != None and long != None:
             return f'location'
         else:
-            return f'{urlMedia}'
+            return f'msg'
 
 
 
@@ -70,8 +70,6 @@ def process_msg(typeMsg, incoming_msg):
             imgGen = generateRandomDogImg()
         else:
             resp = 'Obrigado pela Mensagem!'
-
-    resp = typeMsg
 
     return resp, imgGen
 
