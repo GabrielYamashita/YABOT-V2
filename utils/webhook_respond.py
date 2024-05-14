@@ -15,7 +15,7 @@ def categorize_msg(incoming_msg):
         if typeContent[0] == 'image' and msgBody != '':
             return f'img and msg'
         elif typeContent[0] == 'image':
-            return f'img, {urlMedia}'
+            return f'img'
         elif typeContent[0] == 'video' and msgBody != '':
             return f'video and msg'
         elif typeContent[0] == 'video':
@@ -34,7 +34,7 @@ def categorize_msg(incoming_msg):
         if lat != None and long != None:
             return f'location'
         else:
-            return f'msg'
+            return f'{urlMedia}'
 
 
 
@@ -70,6 +70,8 @@ def process_msg(typeMsg, incoming_msg):
             imgGen = generateRandomDogImg()
         else:
             resp = 'Obrigado pela Mensagem!'
+
+    resp = typeMsg
 
     return resp, imgGen
 
