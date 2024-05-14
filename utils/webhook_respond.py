@@ -15,7 +15,7 @@ def categorize_msg(incoming_msg):
         if typeContent[0] == 'image' and msgBody != '':
             return f'img and msg'
         elif typeContent[0] == 'image':
-            return f'img'
+            return f'img, {urlMedia}'
         elif typeContent[0] == 'video' and msgBody != '':
             return f'video and msg'
         elif typeContent[0] == 'video':
